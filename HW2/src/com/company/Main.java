@@ -17,15 +17,41 @@ public class Main {
             System.out.println("No.");
         }
     }
-    static void secondTaskA(int n){
-        String strN = String.valueOf(n*n);
-        if(strN.contains("3")){
-            System.out.println("Number contains 3");
-        }
-        else{
-            System.out.printf("Number %d does not contains 3",Integer.parseInt(strN));
-        }
 
+    static void secondTaskA(int n) {
+        String strN = String.valueOf(n * n);
+        if (strN.contains("3")) {
+            System.out.println("a.    Number contains 3");
+        } else {
+            System.out.printf("a.    Number %d does not contains 3", Integer.parseInt(strN));
+        }
+    }
+
+    static void secondTaskB(int n) {
+        int lastNum;
+        String rev = "";
+        while (n > 0) {
+            lastNum = n % 10;
+            rev = rev + lastNum;
+            n = n / 10;
+        }
+        System.out.print("b.    Reversed num: " + rev);
+    }
+
+    static void secondTaskC(int n) {
+        String strN = String.valueOf(n);
+        char[] arr = strN.toCharArray();
+        char temp = arr[0];
+        arr[0] = arr[arr.length - 1];
+        arr[arr.length - 1] = temp;
+        strN = new String(arr);
+        System.out.printf("\nc.    Swap the first and last digit of %d: " + strN, n);
+    }
+
+    static void secondTaskD(int n) {
+        String strN = String.valueOf(n);
+        strN = "1" + strN + "1";
+        System.out.printf("\nd.    Adding the one to the beginning and end of the number: " + strN);
     }
 
     public static void main(String[] args) {
@@ -50,6 +76,9 @@ public class Main {
         System.out.print("Input n: ");
         n = in.nextInt();
         secondTaskA(n);
+        secondTaskB(n);
+        secondTaskC(n);
+        secondTaskD(n);
 
 
     }
