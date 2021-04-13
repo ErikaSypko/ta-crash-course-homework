@@ -1,5 +1,9 @@
 package com.company;
 
+import java.time.Period;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -66,7 +70,7 @@ public class Main {
         System.out.print("\nb.    What is your name? ");
         in.nextLine();
         String name = in.nextLine();
-        System.out.printf("\nWhere are you live, %s? ", name);
+        System.out.printf("Where are you live, %s? ", name);
         String address = in.nextLine();
         System.out.printf("Name: %s  Address: %s", name, address);
     }
@@ -118,8 +122,23 @@ public class Main {
         thirdTaskA(r);
         thirdTaskB();
         thirdTaskC();
-
-
+        System.out.println();
+        System.out.println("\nTask 4:");
+        Person person = new Person();
+        person.Input();
+        Person[] people = {new Person("Stefany", 2000, 11, 19),
+                new Person("Elton", 1965, 01, 22),
+                new Person("John", 1985, 12, 11),
+                new Person("Evelyn", 2005, 04, 15),
+                new Person("Sophia", 2002, 11, 04),
+                person};
+        for (var p :
+                people) {
+            p.Output();
+        }
+        System.out.println("Changed name: ");
+        person.ChangeName("Mark");
+        person.Output();
 
 
     }
