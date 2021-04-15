@@ -4,7 +4,9 @@ import eighthTask.ContractEmployee;
 import eighthTask.Employee;
 import eighthTask.SalariedEmployee;
 import seventhTask.*;
+
 import java.util.*;
+
 
 public class Main {
 
@@ -42,6 +44,63 @@ public class Main {
         System.out.println(count + ") " + temp);
     }
 
+    public static void Task10A(Set<Integer> set1, Set<Integer> set2) {
+        Set<Integer> setU = new HashSet<>(set1);
+        Set<Integer> setI = new HashSet<>(set1);
+        setU.addAll(set2);
+        setI.retainAll(set2);
+        System.out.println("Union:");
+        for (var u : setU) {
+            System.out.print(u + " ");
+        }
+        System.out.println("\n\nIntersect:");
+        for (var i : setI) {
+            System.out.print(i + " ");
+        }
+    }
+
+    public static void Task10BIsNamesNonUnique(Map<String, String> personMap) {
+        ArrayList<String> names = new ArrayList<>(personMap.values());
+        Collections.sort(names);
+        Integer count = 1;
+        String tname = names.get(0);
+
+        for (int i = 1; i < names.size(); i++) {
+            if (tname == names.get(i)) {
+                count++;
+                if (count >= 2) {
+                    System.out.println("YES " + names.get(i));
+                    return;
+                }
+
+            } else {
+                tname = names.get(i);
+                count = 1;
+            }
+        }
+//        Map<String, Integer> d = new HashMap<String, Integer>();
+//        for (var p : personMap.keySet()) {
+//            if (d.containsKey(personMap.get(p))) {
+//                d.put(personMap.get(p), d.get(personMap.get(p)) + 1);
+//            } else {
+//                d.put(personMap.get(p), 1);
+//            }
+//        }
+
+    }
+
+    public static Map<String, String> Task10BRemoveName(Map<String, String> personMap, String name) {
+        personMap.values().removeAll(Collections.singleton((name)));
+        return personMap;
+    }
+
+    public static void Task10BPrint(Map<String, String> personMap) {
+        for (var p : personMap.entrySet()) {
+            System.out.printf("Key: %s  Value: %s \n", p.getKey(), p.getValue());
+        }
+    }
+
+
     public static void main(String[] args) throws Exception {
         System.out.println("Task 7:");
         Bird[] birds = {new Chicken(true),
@@ -56,6 +115,7 @@ public class Main {
             b.info();
             i++;
         }
+
 
         System.out.println("\nTask 8:");
         List<Employee> employeeList = new ArrayList<Employee>();
@@ -82,5 +142,33 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        System.out.println("\nTask 10a:");
+        Set<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 4, 5, 8));
+        Set<Integer> set2 = new HashSet<>(Arrays.asList(2, 4, 8, 19, 22));
+        Task10A(set1, set2);
+        System.out.println("\n\nTask 10b:");
+        Map<String, String> personMap = new HashMap<>() {{
+            put("Woodward", "Amy");
+            put("Grainger", "Angelina");
+            put("John", "Elton");
+            put("Montes", "Alejandro");
+            put("Ponds", "Amy");
+            put("Smith", "Matt");
+            put("Williams", "Rory");
+            put("Pond", "Melody");
+            put("Germanotta", "Angelina");
+            put("Tennant", "David");
+        }};
+        System.out.println("All people:");
+        Task10BPrint(personMap);
+        System.out.print("\nThere are at less two persons with the same first name ? ");
+        Task10BIsNamesNonUnique(personMap);
+        String name = "Angelina";
+        System.out.printf("\nWithout %s: \n", name);
+        Map<String, String> temp = Task10BRemoveName(personMap, name);
+        Task10BPrint(temp);
+
+
     }
 }
+
