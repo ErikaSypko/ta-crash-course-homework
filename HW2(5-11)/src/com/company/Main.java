@@ -3,6 +3,9 @@ package com.company;
 import eighthTask.ContractEmployee;
 import eighthTask.Employee;
 import eighthTask.SalariedEmployee;
+import eleventhTask.CourseComparator;
+import eleventhTask.NameComparator;
+import eleventhTask.Student;
 import seventhTask.*;
 
 import java.util.*;
@@ -168,7 +171,22 @@ public class Main {
         Map<String, String> temp = Task10BRemoveName(personMap, name);
         Task10BPrint(temp);
 
-
+        System.out.println("\nTask 11:");
+        List<Student> students = Arrays.asList(new Student("Vera", 2),
+                new Student("Joanne", 5),
+                new Student("Angelina", 4),
+                new Student("Matt", 1),
+                new Student("Amelia", 5),
+                new Student("River", 2),
+                new Student("Regina", 1)
+        );
+        Student.printStudentsCourse(students, 5);
+        Collections.sort(students, new CourseComparator());
+        System.out.println("\nSorted by course:");
+        Student.printStudents(students);
+        System.out.println("\nSorted by name:");
+        Collections.sort(students, new NameComparator());
+        Student.printStudents(students);
     }
 }
 
